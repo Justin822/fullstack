@@ -1,87 +1,49 @@
-import { useEffect } from "react";
 import { useState } from "react";
 
 const App = () => {
-  const [persons, setPersons] = useState([
-    { name: "Arto Hellas", id: "Arto Hellas" },
-  ]);
+  const [persons, setPersons] = useState([{ name: "Arto Hellas", id: 1 }]);
   const [newName, setNewName] = useState("");
-  const [newNumber, setNewNumber] = useState("");
-  const [searchItem, setSearchItem] = useState("");
-  const [filteredContacts, setFilteredContacts] = useState(persons);
 
-  const addContact = (event) => {
-    if (persons.some((person) => person.name === newName)) {
-      alert(`${newName} is already added to phonebook`);
-      return false;
-    }
+  const handleNameChange = (e) => {
+    console.log(e.target.value);
+    setNewName(e.target.value);
+  };
 
-    if (persons.some((person) => person.number === newNumber)) {
-      alert(`The number ${newNumber} is already added to phonebook`);
-      return false;
-    }
+  const addName = (e) => {
+    e.preventDefault();
 
-    event.preventDefault();
-    const contactObject = {
+    const personObject = {
       name: newName,
-      number: newNumber,
-      id: newName,
+      id: persons.length + 1,
     };
 
-    setPersons(persons.concat(contactObject));
+    const nameExists = persons.some(function (ele) {
+      return ele.name === personObject.name;
+    });
+
+    nameExists
+      ? alert("Person exists")
+      : setPersons(persons.concat(personObject));
 
     setNewName("");
-    event.target.reset();
-  };
-
-  const handleContactChange = (event) => {
-    setNewName(event.target.value);
-  };
-
-  const handleNumberChange = (event) => {
-    setNewNumber(event.target.value);
-  };
-
-  const handleInputChange = (event) => {
-    const searchTerm = event.target.value;
-    setSearchItem(searchTerm);
-
-    const filteredItems = persons.filter((contact) =>
-      contact.name.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-
-    setFilteredContacts(filteredItems);
   };
 
   return (
     <div>
       <h2>Phonebook</h2>
-      <div>
-        filter shown with{" "}
-        <input type="text" value={searchItem} onChange={handleInputChange} />
-      </div>
-      <h2>Add a new</h2>
-      <form onSubmit={addContact}>
+      <form onSubmit={addName}>
         <div>
-          name: <input onChange={handleContactChange} />
-        </div>
-        <div>
-          number: <input onChange={handleNumberChange} />
+          name: <input value={newName} onChange={handleNameChange} />
         </div>
         <div>
           <button type="submit">add</button>
         </div>
       </form>
+      <div>debug: {newName}</div>
       <h2>Numbers</h2>
-      <div>
-        {useEffect(() => {
-          filteredContacts.map((person) => {
-            <p key={person.id}>
-              {person.name} {person.number}
-            </p>;
-          });
-        }, [handleNumberChange, handleContactChange, handleInputChange])}
-      </div>
+      {persons.map((person) => {
+        return <div key={person.id}>{person.name}</div>;
+      })}
     </div>
   );
 };
