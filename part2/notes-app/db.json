@@ -23,22 +23,22 @@
     {
       "id": "5",
       "content": "hey",
-      "important": true
+      "important": false
     },
     {
       "id": "6",
       "content": "hey",
-      "important": true
+      "important": false
     },
     {
       "id": "7",
       "content": "hey",
-      "important": true
+      "important": false
     },
     {
       "id": "8",
       "content": "hey",
-      "important": true
+      "important": false
     },
     {
       "id": "a24b",
@@ -58,7 +58,17 @@
     {
       "id": "79d4",
       "content": "hey",
+      "important": false
+    },
+    {
+      "id": "2fb2",
+      "content": "Justin",
       "important": true
+    },
+    {
+      "id": "08a4",
+      "content": "Sickness",
+      "important": false
     }
   ]
 }
