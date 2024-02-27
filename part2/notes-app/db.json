@@ -28,7 +28,7 @@
     {
       "id": "6",
       "content": "hey",
-      "important": false
+      "important": true
     },
     {
       "id": "7",
@@ -63,7 +63,7 @@
     {
       "id": "2fb2",
       "content": "Justin",
-      "important": true
+      "important": false
     },
     {
       "id": "08a4",

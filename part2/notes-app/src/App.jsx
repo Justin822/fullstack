@@ -64,7 +64,6 @@ const App = () => {
         </button>
       </div>
       <ul>
-        {console.log("hello")}
         {notesToShow.map((note) => (
           <Note
             key={note.id}
